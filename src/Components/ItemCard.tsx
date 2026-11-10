@@ -1,5 +1,10 @@
 import type { ClothingProduct  } from '../data/data';
 
+interface ItemCardProps extends ClothingProduct
+{
+    handleAdjustQuantity: (delta: number) => void;
+}
+
 export default function ItemCard({
     name,
     image,
@@ -10,7 +15,10 @@ export default function ItemCard({
     size,
     price,
     quantity,
-}: ClothingProduct) {
+    itemQuantity,
+    handleAdjustQuantity,
+}: ItemCardProps) {
+    const isOutOfStock = quantity === 0;
     return (
         <div className='ItemCard'>
             <img src={image} alt={name} height="150px"/>
@@ -21,7 +29,14 @@ export default function ItemCard({
             <p>{description}</p>
             <p>Size: {size}</p>
             <p>price: ${price.toFixed(2)}</p>
-            <p>Quantity: {quantity}</p>
+            <p>{isOutOfStock ? "Out of Stock" : `In Stock: ${quantity}` }</p>
+            <button onClick={() => handleAdjustQuantity(-1)} disabled={isOutOfStock || itemQuantity === 0}>
+                {" - "}
+            </button>
+            <span>{itemQuantity}</span>
+            <button onClick={() => handleAdjustQuantity(1)} disabled={isOutOfStock || itemQuantity === quantity}>
+                {" + "}
+            </button>
         </div>
     );
 }
