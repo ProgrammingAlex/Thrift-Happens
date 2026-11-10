@@ -1,38 +1,26 @@
 .ThriftApp {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
 }
 
 .ItemsContainer {
   flex: 1;
-  display: grid;
-  gap: 16px;
 }
 
 .ItemCard {
   border: 1px solid #dc4fff;
-  border-radius: 8px;
-  padding: 12px;
   text-align: center;
 }
 
 .ItemCard img {
   max-width: 100%;
-  object-fit: cover;
 }
 
 .CheckoutContainer {
   width: 280px;
-  position: sticky;
-  top: 16px;
   border: 1px solid #dc4fff;
-  border-radius: 8px;
-  padding: 12px;
 }
 
 .CheckoutCard {
   border-bottom: 1px solid #dc4fff;
-  padding: 8px 0;
 }

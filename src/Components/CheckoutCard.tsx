@@ -1,6 +1,8 @@
 import type {CheckoutItem} from './ThriftApp'
 
-export default function CheckoutCard({name, image, price, quantity}: CheckoutItem)
+interface CheckoutCardProps extends CheckoutItem {handleRemove: () => void;}
+
+export default function CheckoutCard({name, image, price, quantity, handleRemove}: CheckoutCardProps)
 {
     const subtotal = price * quantity;
     return(
@@ -11,6 +13,7 @@ export default function CheckoutCard({name, image, price, quantity}: CheckoutIte
             <p>Price: ${price.toFixed(2)}</p>
             <p>Line total: ${(price * quantity).toFixed(2)}</p>
             <p>Subtotal ${subtotal.toFixed(2)}</p>
+            <button onClick={handleRemove}>Remove</button>
         </div>
     );
 }

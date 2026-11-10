@@ -65,6 +65,39 @@ export default function ThriftApp({products}: ThriftAppData)
         }
     }
 
+    function handleRemoveFromCart(id: number)
+    {
+        const removedLine = checkoutItems.find((line) => line.id === id);
+
+        if(removedLine)
+        {
+            setCheckoutItems((prevCheckout) =>
+                prevCheckout.filter((line) => line.id != id),
+                );
+            setItems((prevItems) => 
+                prevItems.map((item) => 
+                    item.id === id
+                        ? {...item, quantity: item.quantity + removedLine.quantity}
+                        : item,
+                    ),
+                );
+        }
+    }
+
+    function handleEmptyCheckout()
+    {
+        setItems((prevItems) =>
+            prevItems.map((item) =>
+            {
+                const line = checkoutItems.find((line) => line.id === item.id);
+                return line
+                    ? {...item, quantity: item.quantity + line.quantity}
+                    : item;
+            }),
+        );
+        setCheckoutItems([]);
+    }
+
     return(
         <div className='ThriftApp'>
             <ItemsContainer
@@ -72,7 +105,11 @@ export default function ThriftApp({products}: ThriftAppData)
                 handleAdjustQuantity={handleAdjustQuantity}
                 handleAddToCart={handleAddToCart}
             />
-            <CheckoutContainer checkoutItems={checkoutItems}/>
+            <CheckoutContainer 
+                checkoutItems={checkoutItems}
+                handleRemoveFromCart={handleRemoveFromCart}
+                handleEmptyCheckout={handleEmptyCheckout}
+            />
         </div>
     );
 }
