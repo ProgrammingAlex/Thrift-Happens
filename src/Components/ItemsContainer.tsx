@@ -5,11 +5,13 @@ interface ItemsContainerProps
 {
     products: ClothingProduct[];
     handleAdjustQuantity: (id: number, delta:number) => void;
+    handleAddToCart: (id: number) => void;
 }
 
 export default function ItemsContainer({
     products,
     handleAdjustQuantity,
+    handleAddToCart,
 }: ItemsContainerProps)
 {
     return(
@@ -21,6 +23,7 @@ export default function ItemsContainer({
                 handleAdjustQuantity={(delta) =>
                     handleAdjustQuantity(product.id, delta)
                 }
+                handleAddToCart={() => handleAddToCart(product.id)}
                 />
             ))}
         </div>
