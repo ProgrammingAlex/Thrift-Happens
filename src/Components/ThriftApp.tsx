@@ -10,6 +10,7 @@ export interface CheckoutItem
     id: number;
     name: string;
     price: number;
+    image: string;
     quantity: number;
 }
 
@@ -49,6 +50,7 @@ export default function ThriftApp({products}: ThriftAppData)
                     : [...prevCheckout, {
                         id: product.id,
                         name: product.name,
+                        image: product.image,
                         price:product.price,
                         quantity:amount,
                     }],
