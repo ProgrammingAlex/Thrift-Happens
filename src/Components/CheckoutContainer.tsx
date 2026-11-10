@@ -8,12 +8,14 @@ interface CheckoutContainerProps
     handleEmptyCheckout: () => void;
 }
 
+//lists the checkout lines grand total and empty checkout button
 export default function CheckoutContainer({
     checkoutItems,
     handleRemoveFromCart,
     handleEmptyCheckout,
 }: CheckoutContainerProps)
 {
+    //sum of price * quantity for every line, starts at 0
     const grandTotal = checkoutItems.reduce(
         (total, line) => total + line.price * line.quantity,
         0,
@@ -21,6 +23,7 @@ export default function CheckoutContainer({
     return(
         <div className='CheckoutContainer'>
             <h2>Checkout</h2>
+            {/* remove handler is wrapped to include this lines id */}
             {checkoutItems.length === 0
                 ? <p>Cart Empty</p>
                 : checkoutItems.map((line) => (

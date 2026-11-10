@@ -2,6 +2,7 @@ import type {CheckoutItem} from './ThriftApp'
 
 interface CheckoutCardProps extends CheckoutItem {handleRemove: () => void;}
 
+//displays one checkout line with a remove button
 export default function CheckoutCard({name, image, price, quantity, handleRemove}: CheckoutCardProps)
 {
     const subtotal = price * quantity;

@@ -5,7 +5,7 @@ interface ItemCardProps extends ClothingProduct
     handleAdjustQuantity: (delta: number) => void;
     handleAddToCart: () => void;
 }
-
+//Displays one product with its quantity counter and add button
 export default function ItemCard({
     name,
     image,
@@ -22,6 +22,7 @@ export default function ItemCard({
 }: ItemCardProps) {
     const isOutOfStock = quantity === 0;
 
+    //button text explains why its disabled
     let addLabel = `Add ${itemQuantity} to Cart`;
     if(isOutOfStock)
         addLabel = "Out of Stock";
@@ -39,6 +40,7 @@ export default function ItemCard({
             <p>Size: {size}</p>
             <p>price: ${price.toFixed(2)}</p>
             <p>{isOutOfStock ? "Out of Stock" : `In Stock: ${quantity}` }</p>
+            {/*^^ Disabled at 0 and at the stock limit ^^*/}
             <button onClick={() => handleAdjustQuantity(-1)} disabled={isOutOfStock || itemQuantity === 0}>
                 {" - "}
             </button>
